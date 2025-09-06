@@ -1,4 +1,6 @@
-streamlit
-requests
-python-dotenv
+pysqlite3-binary
 crewai
+chromadb
+streamlit
+python-dotenv
+requests

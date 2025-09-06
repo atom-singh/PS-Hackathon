@@ -13,7 +13,18 @@ Agent 02:
  name: Finance Strategist
  task: develop_financial_strategy
 '''
+
 import sys
+
+# Patch sqlite3 to use pysqlite3-binary if available (for ChromaDB compatibility)
+try:
+    import pysqlite3
+    sys.modules["sqlite3"] = pysqlite3
+except ImportError:
+    pass
+
+#now import other dependencies
+
 import os
 import ssl
 import urllib3
@@ -24,12 +35,7 @@ from dotenv import load_dotenv
 from crewai import Agent, Task, Crew
 from crewai.tools import BaseTool
 
-# Patch sqlite3 to use pysqlite3-binary if available (for ChromaDB compatibility)
-try:
-    import pysqlite3
-    sys.modules["sqlite3"] = pysqlite3
-except ImportError:
-    pass
+
 
 # --- SSL and HTTP settings ---
 try:
